@@ -4,6 +4,9 @@ import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -22,19 +25,27 @@ public class CompilerDesignLectureProject {
         System.exit(0);
       }
 
-      //String[] positionalArgs = cli.getArgs();
-      //Path path = Paths.get(positionalArgs[0]).toAbsolutePath();
+      if (args.length == 0) {
+        System.out.println("No file path provided!");
+        System.exit(1);
+      }
 
-      // ToDo(Marc): Implement
+      String[] positionalArgs = cli.getArgs();
+      Path path = Paths.get(positionalArgs[0]).toAbsolutePath();
+
+      try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
+        int character;
+        while ((character = reader.read()) != -1) {
+          System.out.print((char) character);
+        }
+      } catch (IOException e) {
+        log.error("Error reading the file: " + path, e);
+      }
+
     } catch (ParseException e) {
       new HelpFormatter().printHelp("tinf-compiler args...", cliOptions);
     } catch (Exception e) {
       log.error("An error occurred", e);
-    }
-
-    if (args.length == 0) {
-      System.out.println("No file path provided!");
-      System.exit(1);
     }
   }
 }

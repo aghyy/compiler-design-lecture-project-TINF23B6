@@ -4,7 +4,10 @@ public enum TokenType {
   TOK_INVALID,
   TOK_STRING_LIT,
 
-  // ToDo(Students): Insert your token types here
+  TOK_IDENTIFIER,
+  TOK_INTEGER_LIT,
+  TOK_DOUBLE_LIT,
+  TOK_KEYWORD,
 
   TOK_EOF,
 }
