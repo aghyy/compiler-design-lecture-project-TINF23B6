@@ -1,26 +1,15 @@
 int main := () {
   int x = 2;
-  int y = 3;
+  string str = "some string";
   
   switch (x) {
     case 1:
-      int scopedVar = 10;
-      print(scopedVar);
+      print("This is 1");
+    case str:
+      print("This is a string");
     case 2:
-      int scopedVar = 20;
-      print(scopedVar);
-    case "hello":
-      print("x is a greeting");
+      print("This is 2");
     default:
-      print("x is something else");
-  }
-
-  switch (y) {
-    case 3:
-      int scopedVar = 30;
-      print(scopedVar);
-    default:
-      int scopedVar = 100;
-      print(scopedVar);
+      print("This is something else");
   }
 }

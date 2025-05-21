@@ -1,1 +1,1 @@
---dump-symbol-table ./src/test-e2e/switch-case-stmt-symbol-table/source.tinf
+--dump-symbol-table ./src/test-e2e/switch-case-stmt-type-checker/source.tinf
