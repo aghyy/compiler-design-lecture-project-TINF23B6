@@ -1,33 +1,42 @@
 package com.auberer.compilerdesignlectureproject.ast;
 
 import com.auberer.compilerdesignlectureproject.lexer.TokenType;
+import com.auberer.compilerdesignlectureproject.sema.SymbolTableEntry;
+import lombok.Getter;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Getter
 public class ASTSwitchCaseStmtNode extends ASTNode {
 
-  @Override
-  public <T> T accept(ASTVisitor<T> visitor) {
-    return visitor.visitSwitchCaseStmt(this);
-  }
+    private SymbolTableEntry currentSymbol;
 
-  public static Set<TokenType> getSelectionSet() {
-    Set<TokenType> selectionSet = new HashSet<>();
-    selectionSet.add(TokenType.TOK_SWITCH);
-    return selectionSet;
-  }
+    @Override
+    public <T> T accept(ASTVisitor<T> visitor) {
+        return visitor.visitSwitchCaseStmt(this);
+    }
 
-  public ASTTernaryExprNode getCondition() {
-    return getChild(ASTTernaryExprNode.class, 0);
-  }
+    public static Set<TokenType> getSelectionSet() {
+        Set<TokenType> selectionSet = new HashSet<>();
+        selectionSet.add(TokenType.TOK_SWITCH);
+        return selectionSet;
+    }
 
-  public List<ASTCaseStmtNode> getCaseBlocks() {
-    return getChildren(ASTCaseStmtNode.class);
-  }
+    public ASTTernaryExprNode getCondition() {
+        return getChild(ASTTernaryExprNode.class, 0);
+    }
 
-  public ASTDefaultStmtNode getDefaultBlock() {
-    return getChild(ASTDefaultStmtNode.class, 0);
-  }
+    public List<ASTCaseStmtNode> getCaseBlocks() {
+        return getChildren(ASTCaseStmtNode.class);
+    }
+
+    public ASTDefaultStmtNode getDefaultBlock() {
+        return getChild(ASTDefaultStmtNode.class, 0);
+    }
+
+    public ASTTernaryExprNode getRhs() {
+        return getChild(ASTTernaryExprNode.class, 0);
+    }
 }
